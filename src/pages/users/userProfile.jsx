@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import UserById from '@/components/userById';
+import UserById from '../../components';
 
 const userProfile = () => {
   return (
