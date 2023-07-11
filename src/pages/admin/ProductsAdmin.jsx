@@ -6,10 +6,7 @@ import CreateProduct from "../../components/CreateProduct"
 
 function ProductsAdmin() {
   const dispatch = useDispatch();
-  const productsbyName = useSelector(state => state.productsbyName);
-  const filteredProducts = useSelector(state => state.filteredProducts);
-  const actionByName = useSelector(state => state.actionByName);
-  const products = actionByName ? productsbyName : filteredProducts;
+  const products = useSelector(state=>state.products)
   console.log(products)
   useEffect(()=>{
  dispatch(getProducts())
@@ -131,8 +128,7 @@ const closeCreateProduct = () => {
             <button
               className="update-button"
               onClick={() => {
-                dispatch(editProduct(item.productId, "price", updatedPrice[item.productId]))
-                .then(() => {
+                dispatch(editProduct(item.productId, "price", updatedPrice[item.productId])).then(() => {
                   dispatch(getProducts());
                   setUpdatedPrice('');
                 });

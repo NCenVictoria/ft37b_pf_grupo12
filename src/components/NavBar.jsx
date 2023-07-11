@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCategories, filterProductsByCategory, getCartByIdUser } from '@/redux/actions';
+import { getCategories, filterProductsByCategory } from '@/redux/actions';
 import { useRouter } from 'next/router';
 import NavBarAdmin from './NavBarAdmin';
 import axios from 'axios';
@@ -21,10 +21,6 @@ function NavBar() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeSubcategory, setActiveSubcategory] = useState(null);
   const cart = useSelector(state => state.cartUser)
-  useEffect(() => {
-    dispatch(getCartByIdUser(userId));
-
-  }, []);
   const totalProducts = () => {
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -35,7 +31,6 @@ function NavBar() {
 
   const categories = useSelector(state => state.categories);
   useEffect(() => {
-    
     dispatch(getCategories());
   }, []);
 
@@ -216,14 +211,6 @@ function NavBar() {
           </Link>
         )}
 
-        {typeUser === "guest" && (
-          <Link
-            href={`/About`}
-            className="flex h-full px-5 items-center justify-center text-sm lg:text-white font-medium lg:bg-transparent bg-white hover:bg-white hover:text-gray-900">
-            Company
-          </Link>
-        )}
-
         <div className='relative h-full'>
           {typeUser === "users" && (
             <button
@@ -276,12 +263,12 @@ function NavBar() {
                 <span className="material-symbols-rounded group-hover:text-gray-900 text-lg">
                   favorite
                 </span>
-                <span className="ml-2 text-sm font-medium group-hover:text-gray-800">0</span>
+                <span className="ml-2 text-sm font-medium group-hover:text-gray-800"></span>
                 <span className="sr-only">items in favorites, view bag</span>
               </Link>
             )}
 
-            {typeUser === "users" && (
+            {/* {typeUser === "users" && ( */}
               <Link href={linkToCart} className="group flex items-center justify-center h-full px-5 lg:bg-transparent bg-white hover:bg-white lg:text-white">
                 <span className="material-symbols-rounded group-hover:text-gray-900 text-lg">
                   shopping_cart
@@ -289,7 +276,7 @@ function NavBar() {
                 <span className="ml-2 text-sm font-medium group-hover:text-gray-800">{totalProducts()}</span>
                 <span className="sr-only">items in cart, view bag</span>
               </Link>
-            )}
+            {/* )} */}
           </div>
         </div>
       )}
