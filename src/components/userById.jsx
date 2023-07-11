@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserById } from '../redux/actions';
+// import { fetchUserById } from '../redux/actions';
 
-const UserProfile = () => {
+const UserById = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const loading = useSelector((state) => state.loading);
@@ -126,5 +126,5 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserById;
 
